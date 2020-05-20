@@ -1,0 +1,48 @@
+server:
+  port: 8070
+  name: mall-user-service
+
+
+
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true  
+
+dubbo:
+  application:
+    name: mall-user-service
+  protocol:       
+    name: dubbo        #dubbo通讯协议名称
+    port: "20884"
+  registry:
+    address: zookeeper://127.0.0.1:2181     #zk注册中心地址
+    protocol: zookeeper    #zk通信协议名称
+  base-package: com.maj.mall   #dubbo服务扫描的路径；这样写，避免以后路径不一样，访问不到       
+ 
+spring:
+  dubbo: 
+    application:
+      name: mall-user-service    #dubbo中的服务名称
+    protocol:       
+      name: dubbo        #dubbo通讯协议名称
+    registry:
+      address: zookeeper://127.0.0.1:2181     #zk注册中心地址
+      protocol: zookeeper    #zk通信协议名称
+    base-package: com.maj.mall   #dubbo服务扫描的路径；这样写，避免以后路径不一样，访问不到   
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/mall?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  mvc:   #整合使用jsp
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp    
+
+local:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0

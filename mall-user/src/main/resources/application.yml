@@ -1,0 +1,28 @@
+server:
+  port: 8080
+  name: mall
+
+spring:
+  datasource:
+    username: root
+    password: 
+    url: jdbc:mysql://localhost:3306/mall?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  mvc:   #整合使用jsp
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  #type-aliases-package: com.example.entity
+  #config-location: classpath:/mybatis/config/mybatis-config.xml
+  # 在spring boot项目中使用mybatis框架开发时，在写好SQL select查询语句后，发现查询出的对象字段都为null，这个时候要检查SQL语句查询返回的字段和映射实体类属性是否一致，如果不使用mybatis配置，则需要使用as重命名，不过这样要敲很多键盘，不仅写出的SQL有些冗杂，而且易出错，所以推荐使用mybatis配置项
+  # 该配置项就是指将带有下划线的表字段映射为驼峰格式的实体类属性。
+  configuration:
+    map-underscore-to-camel-case: true  
+ 
+
+    
+

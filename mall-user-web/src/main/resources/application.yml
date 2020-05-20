@@ -1,0 +1,26 @@
+server:
+  port: 8080
+  name: mall-user-web  
+ 
+spring:
+  dubbo:
+    application: 
+      name: mall-user-web    #dubbo中的服务名称
+    protocol:       
+      name: dubbo        #dubbo通讯协议名称
+    registry:
+      address: zookeeper://127.0.0.1:2181      #zk注册中心地址
+      protocol: zookeeper    #zk通信协议名称
+    base-package: com.maj.mall   #dubbo服务扫描的路径；这样写，避免以后路径不一样，访问不到
+      
+#dubbo用的这里的配置      
+dubbo:
+  application:
+    name: mall-user-web
+  protocol:       
+    name: dubbo        #dubbo通讯协议名称
+  registry:
+    address: zookeeper://127.0.0.1:2181     #zk注册中心地址
+    protocol: zookeeper    #zk通信协议名称
+  base-package: com.maj.mall   #dubbo服务扫描的路径；这样写，避免以后路径不一样，访问不到       
+

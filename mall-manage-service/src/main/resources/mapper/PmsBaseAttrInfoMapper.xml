@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maj.mall.mapper.PmsBaseAttrInfoMapper" >
+	<select id="getPmsBaseSaleAttrByValueIds" resultMap="getPmsBaseSaleAttrByValueIdsMap">
+		SELECT attr.*, attr_value.*, attr.id as attr_info_id, attr_value.id as value_id  FROM 
+		`pms_base_attr_info` attr, `pms_base_attr_value` attr_value
+		where attr.id = attr_value.attr_id and attr_value.id in 
+		<foreach collection="collection" item="attrValueId" index="index" open="(" close=")" separator=",">
+			#{attrValueId}
+		</foreach>
+	</select>
+	
+	<resultMap type="com.maj.mall.bean.PmsBaseAttrInfo" id="getPmsBaseSaleAttrByValueIdsMap" autoMapping="true">
+		<!-- 查询出两个id，配置mybatis对应关系 -->
+		<result column="attr_info_id" property="id"></result>
+		<!-- 封装集合 -->
+		<collection property="attrValueList" ofType="com.maj.mall.bean.PmsBaseAttrValue" autoMapping="true">
+			<result column="value_id" property="id"></result>
+		</collection>
+	</resultMap>
+	
+
+</mapper>

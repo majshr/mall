@@ -1,0 +1,25 @@
+server:
+  port: 8074
+  name: mall-search-service
+
+dubbo:
+  application:
+    name: mall-search-service
+  protocol:       
+    name: dubbo        #dubbo通讯协议名称
+    port: "20881" #不同服务提供者port不能一样；springboot2使用字符串形式配置
+  registry:
+    address: zookeeper://127.0.0.1:2181     #zk注册中心地址
+    protocol: zookeeper    #zk通信协议名称
+  base-package: com.maj.mall   #dubbo服务扫描的路径；这样写，避免以后路径不一样，访问不到       
+ 
+# spring:
+  # data:
+    # elasticsearch:
+      # cluster-name: elasticsearch  #集群名称，默认为elasticsearch
+      # cluster-nodes: 127.0.0.1:9300 #逗号间隔
+      # repositories:
+        # enabled: true # 是否开启本地存储
+
+elasticsearch:
+  ip: 127.0.0.1:9200
